@@ -5,7 +5,7 @@ The simulation logic is based on team strength ("power") and randomized xG (expe
 
 ## Data Source
 
-Team and player data are managed via the following Google Spreadsheet:
+Team and player data are managed via the following Excel file:
 
 [Team & Player Data Sheet (Excel)](https://docs.google.com/spreadsheets/d/1cUouy4gOSGkqZCv4oJla-PUMDvzGnjr3/edit?usp=sharing&ouid=110759171795341607233&rtpof=true&sd=true)
 
