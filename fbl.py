@@ -478,41 +478,42 @@ np.set_printoptions(threshold=10000000)
 # with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
 #     data_s2lschedule.to_excel(writer, sheet_name="sl2",header=False, index=False,startrow=1, startcol=13)
 
-data_slschedule = pd.DataFrame(slschedule)
-with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
-    data_slschedule.to_excel(writer, sheet_name="sl",header=False, index=False,startrow=1, startcol=13)
-data_elschedule = pd.DataFrame(elschedule)
-with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
-    data_elschedule.to_excel(writer, sheet_name="pl",header=False, index=False,startrow=1, startcol=13)
-data_ilschedule = pd.DataFrame(ilschedule)
-with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
-    data_ilschedule.to_excel(writer, sheet_name="il",header=False, index=False,startrow=1, startcol=13)  
-data_glschedule = pd.DataFrame(glschedule)
-with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
-    data_glschedule.to_excel(writer, sheet_name="gl",header=False, index=False,startrow=1, startcol=13) 
-data_flschedule = pd.DataFrame(flschedule)
-with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
-    data_flschedule.to_excel(writer, sheet_name="fl",header=False, index=False,startrow=1, startcol=13)
-data_s2lschedule = pd.DataFrame(s2lschedule)
-with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
-    data_s2lschedule.to_excel(writer, sheet_name="sl2",header=False, index=False,startrow=1, startcol=13)
-for i in range(20):
-    print(new_ts[i].team)
-print("")
-for i in range(20):
-    print(new_te[i].team)
-print("")
-for i in range(20):
-    print(new_ti[i].team)
-print("")
-for i in range(20):
-    print(new_tg[i].team)
-print("")
-for i in range(20):
-    print(new_tf[i].team)
-print("")
-for i in range(20):
-    print(new_ts2[i].team)
+def initialize_league():
+    data_slschedule = pd.DataFrame(slschedule)
+    with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
+        data_slschedule.to_excel(writer, sheet_name="sl",header=False, index=False,startrow=1, startcol=13)
+    data_elschedule = pd.DataFrame(elschedule)
+    with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
+        data_elschedule.to_excel(writer, sheet_name="pl",header=False, index=False,startrow=1, startcol=13)
+    data_ilschedule = pd.DataFrame(ilschedule)
+    with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
+        data_ilschedule.to_excel(writer, sheet_name="il",header=False, index=False,startrow=1, startcol=13)  
+    data_glschedule = pd.DataFrame(glschedule)
+    with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
+        data_glschedule.to_excel(writer, sheet_name="gl",header=False, index=False,startrow=1, startcol=13) 
+    data_flschedule = pd.DataFrame(flschedule)
+    with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
+        data_flschedule.to_excel(writer, sheet_name="fl",header=False, index=False,startrow=1, startcol=13)
+    data_s2lschedule = pd.DataFrame(s2lschedule)
+    with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
+        data_s2lschedule.to_excel(writer, sheet_name="sl2",header=False, index=False,startrow=1, startcol=13)
+    for i in range(20):
+        print(new_ts[i].team)
+    print("")
+    for i in range(20):
+        print(new_te[i].team)
+    print("")
+    for i in range(20):
+        print(new_ti[i].team)
+    print("")
+    for i in range(20):
+        print(new_tg[i].team)
+    print("")
+    for i in range(20):
+        print(new_tf[i].team)
+    print("")
+    for i in range(20):
+        print(new_ts2[i].team)
 
 
 for i in range(len(ts)):
@@ -1427,139 +1428,139 @@ for i in range(32):
 # for i in range(2):
 #     cdr2.append(list(filter(lambda x:x.team==cdr2teams[i],cdr))[0])
 
-# def cdrgames(round):
-#     scorers = np.full((70,3),"",dtype=object)
-#     assisters = np.full((70,3),"",dtype=object)
-#     for i in range(70):
-#         scorers[i][0] = sl.players[i].name
-#         scorers[i][1] = 0
-#         scorers[i][2] = i+1
-#         assisters[i][0] = sl.players[i].name
-#         assisters[i][1] = 0
-#         assisters[i][2] = i+1
-#     if round == 1:
-#         scores = np.full((16,3),"",dtype=object)
-#         for i in range(16):
-#             s = cdrgame(cdr[2*i],cdr[2*i+1],scorers,assisters)
-#             scores[i,0] = cdr[2*i].team
-#             scores[i,1] = str(s[0]) + "-" + str(s[1])
-#             scores[i,2] = cdr[2*i+1].team
-#         data_scores = pd.DataFrame(scores)
-#         with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
-#             data_scores.to_excel(writer, sheet_name="cdr",header=False, index=False,startrow=39, startcol=2)
-#     elif round == 2:
-#         scores = np.full((16,3),"",dtype=object)
-#         for i in range(16):
-#             s = game(cdr[2*i+1],cdr[2*i],scorers,assisters)
-#             scores[i,0] = cdr[2*i+1].team
-#             scores[i,1] = str(s[0]) + "-" + str(s[1])
-#             scores[i,2] = cdr[2*i].team
-#         data_scores = pd.DataFrame(scores)
-#         with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
-#             data_scores.to_excel(writer, sheet_name="cdr",header=False, index=False,startrow=39, startcol=6)
-#     elif round == 3:
-#         scores = np.full((8,3),"",dtype=object)
-#         for i in range(8):
-#             s = cdrgame(cdr16[2*i],cdr16[2*i+1],scorers,assisters)
-#             scores[i,0] = cdr16[2*i].team
-#             scores[i,1] = str(s[0]) + "-" + str(s[1])
-#             scores[i,2] = cdr16[2*i+1].team
-#         data_scores = pd.DataFrame(scores)
-#         with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
-#             data_scores.to_excel(writer, sheet_name="cdr",header=False, index=False,startrow=39, startcol=10)
-#     elif round == 4:
-#         scores = np.full((8,3),"",dtype=object)
-#         for i in range(8):
-#             s = game(cdr16[2*i+1],cdr16[2*i],scorers,assisters)
-#             scores[i,0] = cdr16[2*i+1].team
-#             scores[i,1] = str(s[0]) + "-" + str(s[1])
-#             scores[i,2] = cdr16[2*i].team
-#         data_scores = pd.DataFrame(scores)
-#         with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
-#             data_scores.to_excel(writer, sheet_name="cdr",header=False, index=False,startrow=39, startcol=14)
-#     elif round == 5:
-#         scores = np.full((4,3),"",dtype=object)
-#         for i in range(4):
-#             s = cdrgame(cdr8[2*i],cdr8[2*i+1],scorers,assisters)
-#             scores[i,0] = cdr8[2*i].team
-#             scores[i,1] = str(s[0]) + "-" + str(s[1])
-#             scores[i,2] = cdr8[2*i+1].team
-#         data_scores = pd.DataFrame(scores)
-#         with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
-#             data_scores.to_excel(writer, sheet_name="cdr",header=False, index=False,startrow=50, startcol=10)
-#     elif round == 6:
-#         scores = np.full((4,3),"",dtype=object)
-#         for i in range(4):
-#             s = game(cdr8[2*i+1],cdr8[2*i],scorers,assisters)
-#             scores[i,0] = cdr8[2*i+1].team
-#             scores[i,1] = str(s[0]) + "-" + str(s[1])
-#             scores[i,2] = cdr8[2*i].team
-#         data_scores = pd.DataFrame(scores)
-#         with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
-#             data_scores.to_excel(writer, sheet_name="cdr",header=False, index=False,startrow=50, startcol=14)
-#     elif round == 7:
-#         scores = np.full((2,3),"",dtype=object)
-#         for i in range(2):
-#             s = game(cdr4[2*i],cdr4[2*i+1],scorers,assisters)
-#             scores[i,0] = cdr4[2*i].team
-#             scores[i,1] = str(s[0]) + "-" + str(s[1])
-#             scores[i,2] = cdr4[2*i+1].team
-#         data_scores = pd.DataFrame(scores)
-#         with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
-#             data_scores.to_excel(writer, sheet_name="cdr",header=False, index=False,startrow=57, startcol=10)
-#     elif round == 8:
-#         scores = np.full((2,3),"",dtype=object)
-#         for i in range(2):
-#             s = game(cdr4[2*i+1],cdr4[2*i],scorers,assisters)
-#             scores[i,0] = cdr4[2*i+1].team
-#             scores[i,1] = str(s[0]) + "-" + str(s[1])
-#             scores[i,2] = cdr4[2*i].team
-#         data_scores = pd.DataFrame(scores)
-#         with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
-#             data_scores.to_excel(writer, sheet_name="cdr",header=False, index=False,startrow=57, startcol=14)
-#     elif round == 9:
-#         scores = np.full((2,3),"",dtype=object)
-#         for i in range(1):
-#             s = cdrgame(cdr2[2*i+1],cdr2[2*i],scorers,assisters)
-#             scores[i,0] = cdr2[2*i+1].team
-#             scores[i,1] = str(s[0]) + "-" + str(s[1])
-#             scores[i,2] = cdr2[2*i].team
-#         data_scores = pd.DataFrame(scores)
-#         with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
-#             data_scores.to_excel(writer, sheet_name="cdr",header=False, index=False,startrow=61, startcol=10)
-#     old_scorers = np.full((70,3),"",dtype=object)
-#     old_assisters = np.full((70,3),"",dtype=object)
-#     for i in range(70):
-#         old_scorers[i,0] = Sheet_cdr.cell(39+i,20).value
-#         old_scorers[i,1] = Sheet_cdr.cell(39+i,21).value
-#         old_scorers[i,2] = Sheet_cdr.cell(39+i,22).value
-#         old_assisters[i,0] = Sheet_cdr.cell(39+i,24).value
-#         old_assisters[i,1] = Sheet_cdr.cell(39+i,25).value
-#         old_assisters[i,2] = Sheet_cdr.cell(39+i,26).value
-#     sorted_os = old_scorers[np.argsort(old_scorers[:,2])]
-#     sorted_oa = old_assisters[np.argsort(old_assisters[:,2])]
-#     sorted_s = scorers[np.argsort(scorers[:,2])]
-#     sorted_a = assisters[np.argsort(assisters[:,2])]
-#     new_s = sorted_s
-#     new_a = sorted_a
-#     for i in range(70):
-#         if sorted_os[i][1] != None:
-#             new_s[i][1] += sorted_os[i][1]
-#         else:
-#             new_s[i][1] = sorted_os[i][1]
-#     for i in range(70):
-#         if sorted_oa[i][1] != None:
-#             new_a[i][1] += sorted_oa[i][1]
-#         else:
-#             new_a[i][1] = sorted_oa[i][1]
-#     sorted_new_s = new_s[np.argsort(new_s[:,1])[::-1]]
-#     sorted_new_a = new_a[np.argsort(new_a[:,1])[::-1]]
-#     data_new_s = pd.DataFrame(sorted_new_s)
-#     with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
-#         data_new_s.to_excel(writer, sheet_name="cdr",header=False, index=False,startrow=38, startcol=19)
-#     data_new_a = pd.DataFrame(sorted_new_a)
-#     with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
-#         data_new_a.to_excel(writer, sheet_name="cdr",header=False, index=False,startrow=38, startcol=23)
+def cdrgames(round, teams):
+    scorers = np.full((70,3),"",dtype=object)
+    assisters = np.full((70,3),"",dtype=object)
+    for i in range(70):
+        scorers[i][0] = sl.players[i].name
+        scorers[i][1] = 0
+        scorers[i][2] = i+1
+        assisters[i][0] = sl.players[i].name
+        assisters[i][1] = 0
+        assisters[i][2] = i+1
+    if round == 1:
+        scores = np.full((16,3),"",dtype=object)
+        for i in range(16):
+            s = cdrgame(cdr[2*i],cdr[2*i+1],scorers,assisters)
+            scores[i,0] = cdr[2*i].team
+            scores[i,1] = str(s[0]) + "-" + str(s[1])
+            scores[i,2] = cdr[2*i+1].team
+        data_scores = pd.DataFrame(scores)
+        with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
+            data_scores.to_excel(writer, sheet_name="cdr",header=False, index=False,startrow=39, startcol=2)
+    elif round == 2:
+        scores = np.full((16,3),"",dtype=object)
+        for i in range(16):
+            s = game(cdr[2*i+1],cdr[2*i],scorers,assisters)
+            scores[i,0] = cdr[2*i+1].team
+            scores[i,1] = str(s[0]) + "-" + str(s[1])
+            scores[i,2] = cdr[2*i].team
+        data_scores = pd.DataFrame(scores)
+        with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
+            data_scores.to_excel(writer, sheet_name="cdr",header=False, index=False,startrow=39, startcol=6)
+    elif round == 3:
+        scores = np.full((8,3),"",dtype=object)
+        for i in range(8):
+            s = cdrgame(teams[2*i],teams[2*i+1],scorers,assisters)
+            scores[i,0] = teams[2*i].team
+            scores[i,1] = str(s[0]) + "-" + str(s[1])
+            scores[i,2] = teams[2*i+1].team
+        data_scores = pd.DataFrame(scores)
+        with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
+            data_scores.to_excel(writer, sheet_name="cdr",header=False, index=False,startrow=39, startcol=10)
+    elif round == 4:
+        scores = np.full((8,3),"",dtype=object)
+        for i in range(8):
+            s = game(teams[2*i+1],teams[2*i],scorers,assisters)
+            scores[i,0] = teams[2*i+1].team
+            scores[i,1] = str(s[0]) + "-" + str(s[1])
+            scores[i,2] = teams[2*i].team
+        data_scores = pd.DataFrame(scores)
+        with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
+            data_scores.to_excel(writer, sheet_name="cdr",header=False, index=False,startrow=39, startcol=14)
+    elif round == 5:
+        scores = np.full((4,3),"",dtype=object)
+        for i in range(4):
+            s = cdrgame(teams[2*i],teams[2*i+1],scorers,assisters)
+            scores[i,0] = teams[2*i].team
+            scores[i,1] = str(s[0]) + "-" + str(s[1])
+            scores[i,2] = teams[2*i+1].team
+        data_scores = pd.DataFrame(scores)
+        with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
+            data_scores.to_excel(writer, sheet_name="cdr",header=False, index=False,startrow=50, startcol=10)
+    elif round == 6:
+        scores = np.full((4,3),"",dtype=object)
+        for i in range(4):
+            s = game(teams[2*i+1],teams[2*i],scorers,assisters)
+            scores[i,0] = teams[2*i+1].team
+            scores[i,1] = str(s[0]) + "-" + str(s[1])
+            scores[i,2] = teams[2*i].team
+        data_scores = pd.DataFrame(scores)
+        with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
+            data_scores.to_excel(writer, sheet_name="cdr",header=False, index=False,startrow=50, startcol=14)
+    elif round == 7:
+        scores = np.full((2,3),"",dtype=object)
+        for i in range(2):
+            s = game(teams[2*i],teams[2*i+1],scorers,assisters)
+            scores[i,0] = teams[2*i].team
+            scores[i,1] = str(s[0]) + "-" + str(s[1])
+            scores[i,2] = teams[2*i+1].team
+        data_scores = pd.DataFrame(scores)
+        with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
+            data_scores.to_excel(writer, sheet_name="cdr",header=False, index=False,startrow=57, startcol=10)
+    elif round == 8:
+        scores = np.full((2,3),"",dtype=object)
+        for i in range(2):
+            s = game(teams[2*i+1],teams[2*i],scorers,assisters)
+            scores[i,0] = teams[2*i+1].team
+            scores[i,1] = str(s[0]) + "-" + str(s[1])
+            scores[i,2] = teams[2*i].team
+        data_scores = pd.DataFrame(scores)
+        with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
+            data_scores.to_excel(writer, sheet_name="cdr",header=False, index=False,startrow=57, startcol=14)
+    elif round == 9:
+        scores = np.full((2,3),"",dtype=object)
+        for i in range(1):
+            s = cdrgame(teams[2*i+1],teams[2*i],scorers,assisters)
+            scores[i,0] = teams[2*i+1].team
+            scores[i,1] = str(s[0]) + "-" + str(s[1])
+            scores[i,2] = teams[2*i].team
+        data_scores = pd.DataFrame(scores)
+        with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
+            data_scores.to_excel(writer, sheet_name="cdr",header=False, index=False,startrow=61, startcol=10)
+    old_scorers = np.full((70,3),"",dtype=object)
+    old_assisters = np.full((70,3),"",dtype=object)
+    for i in range(70):
+        old_scorers[i,0] = Sheet_cdr.cell(39+i,20).value
+        old_scorers[i,1] = Sheet_cdr.cell(39+i,21).value
+        old_scorers[i,2] = Sheet_cdr.cell(39+i,22).value
+        old_assisters[i,0] = Sheet_cdr.cell(39+i,24).value
+        old_assisters[i,1] = Sheet_cdr.cell(39+i,25).value
+        old_assisters[i,2] = Sheet_cdr.cell(39+i,26).value
+    sorted_os = old_scorers[np.argsort(old_scorers[:,2])]
+    sorted_oa = old_assisters[np.argsort(old_assisters[:,2])]
+    sorted_s = scorers[np.argsort(scorers[:,2])]
+    sorted_a = assisters[np.argsort(assisters[:,2])]
+    new_s = sorted_s
+    new_a = sorted_a
+    for i in range(70):
+        if sorted_os[i][1] != None:
+            new_s[i][1] += sorted_os[i][1]
+        else:
+            new_s[i][1] = sorted_os[i][1]
+    for i in range(70):
+        if sorted_oa[i][1] != None:
+            new_a[i][1] += sorted_oa[i][1]
+        else:
+            new_a[i][1] = sorted_oa[i][1]
+    sorted_new_s = new_s[np.argsort(new_s[:,1])[::-1]]
+    sorted_new_a = new_a[np.argsort(new_a[:,1])[::-1]]
+    data_new_s = pd.DataFrame(sorted_new_s)
+    with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
+        data_new_s.to_excel(writer, sheet_name="cdr",header=False, index=False,startrow=38, startcol=19)
+    data_new_a = pd.DataFrame(sorted_new_a)
+    with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
+        data_new_a.to_excel(writer, sheet_name="cdr",header=False, index=False,startrow=38, startcol=23)
 
 # cl16teams = []
 # cl16 = []
@@ -1578,119 +1579,119 @@ for i in range(32):
 # for i in range(2):
 #     cl2.append(list(filter(lambda x:x.team==cl2teams[i],t_all))[0])
 
-# def cl_kostage(round):
-#     scorers = np.full((213,3),"",dtype=object)
-#     assisters = np.full((213,3),"",dtype=object)
-#     for i in range(213):
-#         scorers[i][0] = p_all[i].name
-#         scorers[i][1] = 0
-#         scorers[i][2] = i+1
-#         assisters[i][0] = p_all[i].name
-#         assisters[i][1] = 0
-#         assisters[i][2] = i+1
-#     if round == 1:
-#         scores = np.full((8,3),"",dtype=object)
-#         for i in range(8):
-#             s = game(cl16[2*i],cl16[2*i+1],scorers,assisters)
-#             scores[i,0] = cl16[2*i].team
-#             scores[i,1] = str(s[0]) + "-" + str(s[1])
-#             scores[i,2] = cl16[2*i+1].team
-#         data_scores = pd.DataFrame(scores)
-#         with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
-#             data_scores.to_excel(writer, sheet_name="cl",header=False, index=False,startrow=47, startcol=23)
-#     elif round == 2:
-#         scores = np.full((8,3),"",dtype=object)
-#         for i in range(8):
-#             s = game(cl16[2*i+1],cl16[2*i],scorers,assisters)
-#             scores[i,0] = cl16[2*i+1].team
-#             scores[i,1] = str(s[0]) + "-" + str(s[1])
-#             scores[i,2] = cl16[2*i].team
-#         data_scores = pd.DataFrame(scores)
-#         with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
-#             data_scores.to_excel(writer, sheet_name="cl",header=False, index=False,startrow=47, startcol=27)
-#     elif round == 3:
-#         scores = np.full((4,3),"",dtype=object)
-#         for i in range(4):
-#             s = game(cl8[2*i],cl8[2*i+1],scorers,assisters)
-#             scores[i,0] = cl8[2*i].team
-#             scores[i,1] = str(s[0]) + "-" + str(s[1])
-#             scores[i,2] = cl8[2*i+1].team
-#         data_scores = pd.DataFrame(scores)
-#         with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
-#             data_scores.to_excel(writer, sheet_name="cl",header=False, index=False,startrow=58, startcol=23)
-#     elif round == 4:
-#         scores = np.full((4,3),"",dtype=object)
-#         for i in range(4):
-#             s = game(cl8[2*i+1],cl8[2*i],scorers,assisters)
-#             scores[i,0] = cl8[2*i+1].team
-#             scores[i,1] = str(s[0]) + "-" + str(s[1])
-#             scores[i,2] = cl8[2*i].team
-#         data_scores = pd.DataFrame(scores)
-#         with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
-#             data_scores.to_excel(writer, sheet_name="cl",header=False, index=False,startrow=58, startcol=27)
-#     elif round == 5:
-#         scores = np.full((2,3),"",dtype=object)
-#         for i in range(2):
-#             s = game(cl4[2*i],cl4[2*i+1],scorers,assisters)
-#             scores[i,0] = cl4[2*i].team
-#             scores[i,1] = str(s[0]) + "-" + str(s[1])
-#             scores[i,2] = cl4[2*i+1].team
-#         data_scores = pd.DataFrame(scores)
-#         with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
-#             data_scores.to_excel(writer, sheet_name="cl",header=False, index=False,startrow=65, startcol=23)
-#     elif round == 6:
-#         scores = np.full((2,3),"",dtype=object)
-#         for i in range(2):
-#             s = game(cl4[2*i+1],cl4[2*i],scorers,assisters)
-#             scores[i,0] = cl4[2*i+1].team
-#             scores[i,1] = str(s[0]) + "-" + str(s[1])
-#             scores[i,2] = cl4[2*i].team
-#         data_scores = pd.DataFrame(scores)
-#         with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
-#             data_scores.to_excel(writer, sheet_name="cl",header=False, index=False,startrow=65, startcol=27)
-#     elif round == 7:
-#         scores = np.full((1,3),"",dtype=object)
-#         for i in range(1):
-#             s = final_game(cl2[2*i],cl2[2*i+1],scorers,assisters)
-#             scores[i,0] = cl2[2*i].team
-#             scores[i,1] = str(s[0]) + "-" + str(s[1])
-#             scores[i,2] = cl2[2*i+1].team
-#         data_scores = pd.DataFrame(scores)
-#         with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
-#             data_scores.to_excel(writer, sheet_name="cl",header=False, index=False,startrow=69, startcol=23)
-#     old_scorers = np.full((213,3),"",dtype=object)
-#     old_assisters = np.full((213,3),"",dtype=object)
-#     for i in range(213):
-#         old_scorers[i,0] = Sheet_cl.cell(67+i,3).value
-#         old_scorers[i,1] = Sheet_cl.cell(67+i,4).value
-#         old_scorers[i,2] = Sheet_cl.cell(67+i,5).value
-#         old_assisters[i,0] = Sheet_cl.cell(67+i,7).value
-#         old_assisters[i,1] = Sheet_cl.cell(67+i,8).value
-#         old_assisters[i,2] = Sheet_cl.cell(67+i,9).value
-#     sorted_os = old_scorers[np.argsort(old_scorers[:,2])]
-#     sorted_oa = old_assisters[np.argsort(old_assisters[:,2])]
-#     sorted_s = scorers[np.argsort(scorers[:,2])]
-#     sorted_a = assisters[np.argsort(assisters[:,2])]
-#     new_s = sorted_os
-#     new_a = sorted_oa
-#     for i in range(213):
-#         if sorted_s[i][1] != None:
-#             new_s[i][1] += sorted_s[i][1]
-#         else:
-#             new_s[i][1] = sorted_s[i][1]
-#     for i in range(213):
-#         if sorted_a[i][1] != None:
-#             new_a[i][1] += sorted_a[i][1]
-#         else:
-#             new_a[i][1] = sorted_a[i][1]
-#     sorted_new_s = new_s[np.argsort(new_s[:,1])[::-1]]
-#     sorted_new_a = new_a[np.argsort(new_a[:,1])[::-1]]
-#     data_new_s = pd.DataFrame(sorted_new_s)
-#     with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
-#         data_new_s.to_excel(writer, sheet_name="cl",header=False, index=False,startrow=66, startcol=2)
-#     data_new_a = pd.DataFrame(sorted_new_a)
-#     with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
-#         data_new_a.to_excel(writer, sheet_name="cl",header=False, index=False,startrow=66, startcol=6)
+def cl_kostage(round, teams):
+    scorers = np.full((213,3),"",dtype=object)
+    assisters = np.full((213,3),"",dtype=object)
+    for i in range(213):
+        scorers[i][0] = p_all[i].name
+        scorers[i][1] = 0
+        scorers[i][2] = i+1
+        assisters[i][0] = p_all[i].name
+        assisters[i][1] = 0
+        assisters[i][2] = i+1
+    if round == 1:
+        scores = np.full((8,3),"",dtype=object)
+        for i in range(8):
+            s = game(teams[2*i],teams[2*i+1],scorers,assisters)
+            scores[i,0] = teams[2*i].team
+            scores[i,1] = str(s[0]) + "-" + str(s[1])
+            scores[i,2] = teams[2*i+1].team
+        data_scores = pd.DataFrame(scores)
+        with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
+            data_scores.to_excel(writer, sheet_name="cl",header=False, index=False,startrow=47, startcol=23)
+    elif round == 2:
+        scores = np.full((8,3),"",dtype=object)
+        for i in range(8):
+            s = game(teams[2*i+1],teams[2*i],scorers,assisters)
+            scores[i,0] = teams[2*i+1].team
+            scores[i,1] = str(s[0]) + "-" + str(s[1])
+            scores[i,2] = teams[2*i].team
+        data_scores = pd.DataFrame(scores)
+        with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
+            data_scores.to_excel(writer, sheet_name="cl",header=False, index=False,startrow=47, startcol=27)
+    elif round == 3:
+        scores = np.full((4,3),"",dtype=object)
+        for i in range(4):
+            s = game(teams[2*i],teams[2*i+1],scorers,assisters)
+            scores[i,0] = teams[2*i].team
+            scores[i,1] = str(s[0]) + "-" + str(s[1])
+            scores[i,2] = teams[2*i+1].team
+        data_scores = pd.DataFrame(scores)
+        with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
+            data_scores.to_excel(writer, sheet_name="cl",header=False, index=False,startrow=58, startcol=23)
+    elif round == 4:
+        scores = np.full((4,3),"",dtype=object)
+        for i in range(4):
+            s = game(teams[2*i+1],teams[2*i],scorers,assisters)
+            scores[i,0] = teams[2*i+1].team
+            scores[i,1] = str(s[0]) + "-" + str(s[1])
+            scores[i,2] = teams[2*i].team
+        data_scores = pd.DataFrame(scores)
+        with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
+            data_scores.to_excel(writer, sheet_name="cl",header=False, index=False,startrow=58, startcol=27)
+    elif round == 5:
+        scores = np.full((2,3),"",dtype=object)
+        for i in range(2):
+            s = game(teams[2*i],teams[2*i+1],scorers,assisters)
+            scores[i,0] = teams[2*i].team
+            scores[i,1] = str(s[0]) + "-" + str(s[1])
+            scores[i,2] = teams[2*i+1].team
+        data_scores = pd.DataFrame(scores)
+        with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
+            data_scores.to_excel(writer, sheet_name="cl",header=False, index=False,startrow=65, startcol=23)
+    elif round == 6:
+        scores = np.full((2,3),"",dtype=object)
+        for i in range(2):
+            s = game(cl4[2*i+1],cl4[2*i],scorers,assisters)
+            scores[i,0] = cl4[2*i+1].team
+            scores[i,1] = str(s[0]) + "-" + str(s[1])
+            scores[i,2] = cl4[2*i].team
+        data_scores = pd.DataFrame(scores)
+        with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
+            data_scores.to_excel(writer, sheet_name="cl",header=False, index=False,startrow=65, startcol=27)
+    elif round == 7:
+        scores = np.full((1,3),"",dtype=object)
+        for i in range(1):
+            s = final_game(teams[2*i],teams[2*i+1],scorers,assisters)
+            scores[i,0] = teams[2*i].team
+            scores[i,1] = str(s[0]) + "-" + str(s[1])
+            scores[i,2] = teams[2*i+1].team
+        data_scores = pd.DataFrame(scores)
+        with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
+            data_scores.to_excel(writer, sheet_name="cl",header=False, index=False,startrow=69, startcol=23)
+    old_scorers = np.full((213,3),"",dtype=object)
+    old_assisters = np.full((213,3),"",dtype=object)
+    for i in range(213):
+        old_scorers[i,0] = Sheet_cl.cell(67+i,3).value
+        old_scorers[i,1] = Sheet_cl.cell(67+i,4).value
+        old_scorers[i,2] = Sheet_cl.cell(67+i,5).value
+        old_assisters[i,0] = Sheet_cl.cell(67+i,7).value
+        old_assisters[i,1] = Sheet_cl.cell(67+i,8).value
+        old_assisters[i,2] = Sheet_cl.cell(67+i,9).value
+    sorted_os = old_scorers[np.argsort(old_scorers[:,2])]
+    sorted_oa = old_assisters[np.argsort(old_assisters[:,2])]
+    sorted_s = scorers[np.argsort(scorers[:,2])]
+    sorted_a = assisters[np.argsort(assisters[:,2])]
+    new_s = sorted_os
+    new_a = sorted_oa
+    for i in range(213):
+        if sorted_s[i][1] != None:
+            new_s[i][1] += sorted_s[i][1]
+        else:
+            new_s[i][1] = sorted_s[i][1]
+    for i in range(213):
+        if sorted_a[i][1] != None:
+            new_a[i][1] += sorted_a[i][1]
+        else:
+            new_a[i][1] = sorted_a[i][1]
+    sorted_new_s = new_s[np.argsort(new_s[:,1])[::-1]]
+    sorted_new_a = new_a[np.argsort(new_a[:,1])[::-1]]
+    data_new_s = pd.DataFrame(sorted_new_s)
+    with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
+        data_new_s.to_excel(writer, sheet_name="cl",header=False, index=False,startrow=66, startcol=2)
+    data_new_a = pd.DataFrame(sorted_new_a)
+    with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
+        data_new_a.to_excel(writer, sheet_name="cl",header=False, index=False,startrow=66, startcol=6)
 
 # elplayoffteams = []
 # elplayoff = []
@@ -1713,181 +1714,182 @@ for i in range(32):
 # for i in range(2):
 #     el2.append(list(filter(lambda x:x.team==el2teams[i],t_all))[0])
 
-# def el_playoff(round):
-#     scorers = np.full((213,3),"",dtype=object)
-#     assisters = np.full((213,3),"",dtype=object)
-#     for i in range(213):
-#         scorers[i][0] = p_all[i].name
-#         scorers[i][1] = 0
-#         scorers[i][2] = i+1
-#         assisters[i][0] = p_all[i].name
-#         assisters[i][1] = 0
-#         assisters[i][2] = i+1
-#     if round == 1:
-#         scores = np.full((8,3),"",dtype=object)
-#         for i in range(8):
-#             s = game(elplayoff[2*i],elplayoff[2*i+1],scorers,assisters)
-#             scores[i,0] = elplayoff[2*i].team
-#             scores[i,1] = str(s[0])+"-"+str(s[1])
-#             scores[i,2] = elplayoff[2*i+1].team
-#         data_scores = pd.DataFrame(scores)
-#         with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
-#             data_scores.to_excel(writer, sheet_name="el",header=False, index=False,startrow=8, startcol=1)
-#     elif round == 2:
-#         scores = np.full((8,3),"",dtype=object)
-#         for i in range(8):
-#             s = game(elplayoff[2*i+1],elplayoff[2*i],scorers,assisters)
-#             scores[i,0] = elplayoff[2*i+1].team
-#             scores[i,1] = str(s[0])+"-"+str(s[1])
-#             scores[i,2] = elplayoff[2*i].team
-#         data_scores = pd.DataFrame(scores)
-#         with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
-#             data_scores.to_excel(writer, sheet_name="el",header=False, index=False,startrow=8, startcol=5)
-#     old_scorers = np.full((213,3),"",dtype=object)
-#     old_assisters = np.full((213,3),"",dtype=object)
-#     for i in range(213):
-#         old_scorers[i,0] = Sheet_el.cell(44+i,3).value
-#         old_scorers[i,1] = Sheet_el.cell(44+i,4).value
-#         old_scorers[i,2] = Sheet_el.cell(44+i,5).value
-#         old_assisters[i,0] = Sheet_el.cell(44+i,7).value
-#         old_assisters[i,1] = Sheet_el.cell(44+i,8).value
-#         old_assisters[i,2] = Sheet_el.cell(44+i,9).value
-#     sorted_os = old_scorers[np.argsort(old_scorers[:,2])]
-#     sorted_oa = old_assisters[np.argsort(old_assisters[:,2])]
-#     sorted_s = scorers[np.argsort(scorers[:,2])]
-#     sorted_a = assisters[np.argsort(assisters[:,2])]
-#     new_s = sorted_os
-#     new_a = sorted_oa
-#     for i in range(213):
-#         if sorted_s[i][1] != None:
-#             new_s[i][1] += sorted_s[i][1]
-#         else:
-#             new_s[i][1] = sorted_s[i][1]
-#     for i in range(213):
-#         if sorted_a[i][1] != None:
-#             new_a[i][1] += sorted_a[i][1]
-#         else:
-#             new_a[i][1] = sorted_a[i][1]
-#     sorted_new_s = new_s[np.argsort(new_s[:,1])[::-1]]
-#     sorted_new_a = new_a[np.argsort(new_a[:,1])[::-1]]
-#     data_new_s = pd.DataFrame(sorted_new_s)
-#     with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
-#         data_new_s.to_excel(writer, sheet_name="el",header=False, index=False,startrow=43, startcol=2)
-#     data_new_a = pd.DataFrame(sorted_new_a)
-#     with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
-#         data_new_a.to_excel(writer, sheet_name="el",header=False, index=False,startrow=43, startcol=6)
-# def el_kostage(round):
-#     scorers = np.full((213,3),"",dtype=object)
-#     assisters = np.full((213,3),"",dtype=object)
-#     for i in range(213):
-#         scorers[i][0] = p_all[i].name
-#         scorers[i][1] = 0
-#         scorers[i][2] = i+1
-#         assisters[i][0] = p_all[i].name
-#         assisters[i][1] = 0
-#         assisters[i][2] = i+1
-#     if round == 1:
-#         scores = np.full((8,3),"",dtype=object)
-#         for i in range(8):
-#             s = game(el16[2*i],el16[2*i+1],scorers,assisters)
-#             scores[i,0] = el16[2*i].team
-#             scores[i,1] = str(s[0])+"-"+str(s[1])
-#             scores[i,2] = el16[2*i+1].team
-#         data_scores = pd.DataFrame(scores)
-#         with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
-#             data_scores.to_excel(writer, sheet_name="el",header=False, index=False,startrow=24, startcol=21)
-#     elif round == 2:
-#         scores = np.full((8,3),"",dtype=object)
-#         for i in range(8):
-#             s = game(el16[2*i+1],el16[2*i],scorers,assisters)
-#             scores[i,0] = el16[2*i+1].team
-#             scores[i,1] = str(s[0])+"-"+str(s[1])
-#             scores[i,2] = el16[2*i].team
-#         data_scores = pd.DataFrame(scores)
-#         with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
-#             data_scores.to_excel(writer, sheet_name="el",header=False, index=False,startrow=24, startcol=25)
-#     elif round == 3:
-#         scores = np.full((4,3),"",dtype=object)
-#         for i in range(4):
-#             s = game(el8[2*i],el8[2*i+1],scorers,assisters)
-#             scores[i,0] = el8[2*i].team
-#             scores[i,1] = str(s[0])+"-"+str(s[1])
-#             scores[i,2] = el8[2*i+1].team
-#         data_scores = pd.DataFrame(scores)
-#         with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
-#             data_scores.to_excel(writer, sheet_name="el",header=False, index=False,startrow=35, startcol=21)
-#     elif round == 4:
-#         scores = np.full((4,3),"",dtype=object)
-#         for i in range(4):
-#             s = game(el8[2*i+1],el8[2*i],scorers,assisters)
-#             scores[i,0] = el8[2*i+1].team
-#             scores[i,1] = str(s[0])+"-"+str(s[1])
-#             scores[i,2] = el8[2*i].team
-#         data_scores = pd.DataFrame(scores)
-#         with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
-#             data_scores.to_excel(writer, sheet_name="el",header=False, index=False,startrow=35, startcol=25)
-#     elif round == 5:
-#         scores = np.full((2,3),"",dtype=object)
-#         for i in range(2):
-#             s = game(el4[2*i],el4[2*i+1],scorers,assisters)
-#             scores[i,0] = el4[2*i].team
-#             scores[i,1] = str(s[0])+"-"+str(s[1])
-#             scores[i,2] = el4[2*i+1].team
-#         data_scores = pd.DataFrame(scores)
-#         with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
-#             data_scores.to_excel(writer, sheet_name="el",header=False, index=False,startrow=42, startcol=21)
-#     elif round == 6:
-#         scores = np.full((2,3),"",dtype=object)
-#         for i in range(2):
-#             s = game(el4[2*i+1],el4[2*i],scorers,assisters)
-#             scores[i,0] = el4[2*i+1].team
-#             scores[i,1] = str(s[0])+"-"+str(s[1])
-#             scores[i,2] = el4[2*i].team
-#         data_scores = pd.DataFrame(scores)
-#         with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
-#             data_scores.to_excel(writer, sheet_name="el",header=False, index=False,startrow=42, startcol=25)
-#     elif round == 7:
-#         scores = np.full((1,3),"",dtype=object)
-#         s = final_game(el2[0],el2[1],scorers,assisters)
-#         scores[0,0] = el2[0].team
-#         scores[0,1] = str(s[0])+"-"+str(s[1])
-#         scores[0,2] = el2[1].team
-#         data_scores = pd.DataFrame(scores)
-#         with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
-#             data_scores.to_excel(writer, sheet_name="el",header=False, index=False,startrow=46, startcol=21)
-#     old_scorers = np.full((213,3),"",dtype=object)
-#     old_assisters = np.full((213,3),"",dtype=object)
-#     for i in range(213):
-#         old_scorers[i,0] = Sheet_el.cell(44+i,3).value
-#         old_scorers[i,1] = Sheet_el.cell(44+i,4).value
-#         old_scorers[i,2] = Sheet_el.cell(44+i,5).value
-#         old_assisters[i,0] = Sheet_el.cell(44+i,7).value
-#         old_assisters[i,1] = Sheet_el.cell(44+i,8).value
-#         old_assisters[i,2] = Sheet_el.cell(44+i,9).value
-#     sorted_os = old_scorers[np.argsort(old_scorers[:,2])]
-#     sorted_oa = old_assisters[np.argsort(old_assisters[:,2])]
-#     sorted_s = scorers[np.argsort(scorers[:,2])]
-#     sorted_a = assisters[np.argsort(assisters[:,2])]
-#     new_s = sorted_os
-#     new_a = sorted_oa
-#     for i in range(213):
-#         if sorted_s[i][1] != None:
-#             new_s[i][1] += sorted_s[i][1]
-#         else:
-#             new_s[i][1] = sorted_s[i][1]
-#     for i in range(213):
-#         if sorted_a[i][1] != None:
-#             new_a[i][1] += sorted_a[i][1]
-#         else:
-#             new_a[i][1] = sorted_a[i][1]
-#     sorted_new_s = new_s[np.argsort(new_s[:,1])[::-1]]
-#     sorted_new_a = new_a[np.argsort(new_a[:,1])[::-1]]
-#     data_new_s = pd.DataFrame(sorted_new_s)
-#     with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
-#         data_new_s.to_excel(writer, sheet_name="el",header=False, index=False,startrow=43, startcol=2)
-#     data_new_a = pd.DataFrame(sorted_new_a)
-#     with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
-#         data_new_a.to_excel(writer, sheet_name="el",header=False, index=False,startrow=43, startcol=6)
+def el_playoff(round, teams):
+    scorers = np.full((213,3),"",dtype=object)
+    assisters = np.full((213,3),"",dtype=object)
+    for i in range(213):
+        scorers[i][0] = p_all[i].name
+        scorers[i][1] = 0
+        scorers[i][2] = i+1
+        assisters[i][0] = p_all[i].name
+        assisters[i][1] = 0
+        assisters[i][2] = i+1
+    if round == 1:
+        scores = np.full((8,3),"",dtype=object)
+        for i in range(8):
+            s = game(teams[2*i],teams[2*i+1],scorers,assisters)
+            scores[i,0] = teams[2*i].team
+            scores[i,1] = str(s[0])+"-"+str(s[1])
+            scores[i,2] = teams[2*i+1].team
+        data_scores = pd.DataFrame(scores)
+        with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
+            data_scores.to_excel(writer, sheet_name="el",header=False, index=False,startrow=8, startcol=1)
+    elif round == 2:
+        scores = np.full((8,3),"",dtype=object)
+        for i in range(8):
+            s = game(teams[2*i+1],teams[2*i],scorers,assisters)
+            scores[i,0] = teams[2*i+1].team
+            scores[i,1] = str(s[0])+"-"+str(s[1])
+            scores[i,2] = teams[2*i].team
+        data_scores = pd.DataFrame(scores)
+        with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
+            data_scores.to_excel(writer, sheet_name="el",header=False, index=False,startrow=8, startcol=5)
+    old_scorers = np.full((213,3),"",dtype=object)
+    old_assisters = np.full((213,3),"",dtype=object)
+    for i in range(213):
+        old_scorers[i,0] = Sheet_el.cell(44+i,3).value
+        old_scorers[i,1] = Sheet_el.cell(44+i,4).value
+        old_scorers[i,2] = Sheet_el.cell(44+i,5).value
+        old_assisters[i,0] = Sheet_el.cell(44+i,7).value
+        old_assisters[i,1] = Sheet_el.cell(44+i,8).value
+        old_assisters[i,2] = Sheet_el.cell(44+i,9).value
+    sorted_os = old_scorers[np.argsort(old_scorers[:,2])]
+    sorted_oa = old_assisters[np.argsort(old_assisters[:,2])]
+    sorted_s = scorers[np.argsort(scorers[:,2])]
+    sorted_a = assisters[np.argsort(assisters[:,2])]
+    new_s = sorted_os
+    new_a = sorted_oa
+    for i in range(213):
+        if sorted_s[i][1] != None:
+            new_s[i][1] += sorted_s[i][1]
+        else:
+            new_s[i][1] = sorted_s[i][1]
+    for i in range(213):
+        if sorted_a[i][1] != None:
+            new_a[i][1] += sorted_a[i][1]
+        else:
+            new_a[i][1] = sorted_a[i][1]
+    sorted_new_s = new_s[np.argsort(new_s[:,1])[::-1]]
+    sorted_new_a = new_a[np.argsort(new_a[:,1])[::-1]]
+    data_new_s = pd.DataFrame(sorted_new_s)
+    with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
+        data_new_s.to_excel(writer, sheet_name="el",header=False, index=False,startrow=43, startcol=2)
+    data_new_a = pd.DataFrame(sorted_new_a)
+    with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
+        data_new_a.to_excel(writer, sheet_name="el",header=False, index=False,startrow=43, startcol=6)
+
+def el_kostage(round, teams):
+    scorers = np.full((213,3),"",dtype=object)
+    assisters = np.full((213,3),"",dtype=object)
+    for i in range(213):
+        scorers[i][0] = p_all[i].name
+        scorers[i][1] = 0
+        scorers[i][2] = i+1
+        assisters[i][0] = p_all[i].name
+        assisters[i][1] = 0
+        assisters[i][2] = i+1
+    if round == 1:
+        scores = np.full((8,3),"",dtype=object)
+        for i in range(8):
+            s = game(teams[2*i],teams[2*i+1],scorers,assisters)
+            scores[i,0] = teams[2*i].team
+            scores[i,1] = str(s[0])+"-"+str(s[1])
+            scores[i,2] = teams[2*i+1].team
+        data_scores = pd.DataFrame(scores)
+        with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
+            data_scores.to_excel(writer, sheet_name="el",header=False, index=False,startrow=24, startcol=21)
+    elif round == 2:
+        scores = np.full((8,3),"",dtype=object)
+        for i in range(8):
+            s = game(teams[2*i+1],teams[2*i],scorers,assisters)
+            scores[i,0] = teams[2*i+1].team
+            scores[i,1] = str(s[0])+"-"+str(s[1])
+            scores[i,2] = teams[2*i].team
+        data_scores = pd.DataFrame(scores)
+        with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
+            data_scores.to_excel(writer, sheet_name="el",header=False, index=False,startrow=24, startcol=25)
+    elif round == 3:
+        scores = np.full((4,3),"",dtype=object)
+        for i in range(4):
+            s = game(teams[2*i],teams[2*i+1],scorers,assisters)
+            scores[i,0] = teams[2*i].team
+            scores[i,1] = str(s[0])+"-"+str(s[1])
+            scores[i,2] = teams[2*i+1].team
+        data_scores = pd.DataFrame(scores)
+        with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
+            data_scores.to_excel(writer, sheet_name="el",header=False, index=False,startrow=35, startcol=21)
+    elif round == 4:
+        scores = np.full((4,3),"",dtype=object)
+        for i in range(4):
+            s = game(teams[2*i+1],teams[2*i],scorers,assisters)
+            scores[i,0] = teams[2*i+1].team
+            scores[i,1] = str(s[0])+"-"+str(s[1])
+            scores[i,2] = teams[2*i].team
+        data_scores = pd.DataFrame(scores)
+        with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
+            data_scores.to_excel(writer, sheet_name="el",header=False, index=False,startrow=35, startcol=25)
+    elif round == 5:
+        scores = np.full((2,3),"",dtype=object)
+        for i in range(2):
+            s = game(teams[2*i],teams[2*i+1],scorers,assisters)
+            scores[i,0] = teams[2*i].team
+            scores[i,1] = str(s[0])+"-"+str(s[1])
+            scores[i,2] = teams[2*i+1].team
+        data_scores = pd.DataFrame(scores)
+        with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
+            data_scores.to_excel(writer, sheet_name="el",header=False, index=False,startrow=42, startcol=21)
+    elif round == 6:
+        scores = np.full((2,3),"",dtype=object)
+        for i in range(2):
+            s = game(teams[2*i+1],teams[2*i],scorers,assisters)
+            scores[i,0] = teams[2*i+1].team
+            scores[i,1] = str(s[0])+"-"+str(s[1])
+            scores[i,2] = teams[2*i].team
+        data_scores = pd.DataFrame(scores)
+        with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
+            data_scores.to_excel(writer, sheet_name="el",header=False, index=False,startrow=42, startcol=25)
+    elif round == 7:
+        scores = np.full((1,3),"",dtype=object)
+        s = final_game(teams[0],teams[1],scorers,assisters)
+        scores[0,0] = teams[0].team
+        scores[0,1] = str(s[0])+"-"+str(s[1])
+        scores[0,2] = teams[1].team
+        data_scores = pd.DataFrame(scores)
+        with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
+            data_scores.to_excel(writer, sheet_name="el",header=False, index=False,startrow=46, startcol=21)
+    old_scorers = np.full((213,3),"",dtype=object)
+    old_assisters = np.full((213,3),"",dtype=object)
+    for i in range(213):
+        old_scorers[i,0] = Sheet_el.cell(44+i,3).value
+        old_scorers[i,1] = Sheet_el.cell(44+i,4).value
+        old_scorers[i,2] = Sheet_el.cell(44+i,5).value
+        old_assisters[i,0] = Sheet_el.cell(44+i,7).value
+        old_assisters[i,1] = Sheet_el.cell(44+i,8).value
+        old_assisters[i,2] = Sheet_el.cell(44+i,9).value
+    sorted_os = old_scorers[np.argsort(old_scorers[:,2])]
+    sorted_oa = old_assisters[np.argsort(old_assisters[:,2])]
+    sorted_s = scorers[np.argsort(scorers[:,2])]
+    sorted_a = assisters[np.argsort(assisters[:,2])]
+    new_s = sorted_os
+    new_a = sorted_oa
+    for i in range(213):
+        if sorted_s[i][1] != None:
+            new_s[i][1] += sorted_s[i][1]
+        else:
+            new_s[i][1] = sorted_s[i][1]
+    for i in range(213):
+        if sorted_a[i][1] != None:
+            new_a[i][1] += sorted_a[i][1]
+        else:
+            new_a[i][1] = sorted_a[i][1]
+    sorted_new_s = new_s[np.argsort(new_s[:,1])[::-1]]
+    sorted_new_a = new_a[np.argsort(new_a[:,1])[::-1]]
+    data_new_s = pd.DataFrame(sorted_new_s)
+    with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
+        data_new_s.to_excel(writer, sheet_name="el",header=False, index=False,startrow=43, startcol=2)
+    data_new_a = pd.DataFrame(sorted_new_a)
+    with pd.ExcelWriter("fb_real.xlsx", engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
+        data_new_a.to_excel(writer, sheet_name="el",header=False, index=False,startrow=43, startcol=6)
 
 def cup_game(a,b,l):
     s = score(a.power,b.power)
@@ -2045,7 +2047,6 @@ def cupresult(t):
     ta = []
     tb1 = cup(t,5,tb2,ta)
 
-sl2_poteams = []
 def sl_playoff(t):
     po4 = []
     po2 = []
@@ -2095,3 +2096,92 @@ gaa=[[],[],
 #cdrgames(9)
 
 #print(score(4500,4000))
+
+if __name__ == "__main__":
+    import argparse
+    parser = argparse.ArgumentParser(description="Football League Simulation")
+    parser.add_argument(
+        "function",
+        choices=[
+            "cl_set", "cupresult",
+            "cl_groupstage",
+            "cl_kostage",       # needs (n, teams)
+            "sl_playoff",       # needs (teams,)
+            "el_playoff",       # needs (n,teams,)
+            "el_group",         # needs (n,)
+            "el_kostage",       # needs (n,teams,)
+            "cdrgames",         # needs (n,teams,)
+            "all_leagueround",  # needs (n,)
+            "my_leagueround" ,   # needs (n, [home,assist,...])
+            "initialize_league"  # no args
+        ],
+        help="Function to execute"
+    )
+    
+    parser.add_argument("n", type=int, nargs="?", help="round number")
+    
+    # for my_leagueround
+    parser.add_argument("--home_goals", nargs="*", default=[], help="home goal scoreres")
+    parser.add_argument("--home_assists", nargs="*", default=[], help="home goal assisters")
+    parser.add_argument("--away_goals", nargs="*", default=[], help="away goal scorers")
+    parser.add_argument("--away_assists", nargs="*", default=[], help="away goal assisters")
+    
+    # for other functions
+    parser.add_argument("--args", nargs="*", help="additional arguments for function")
+    
+    args = parser.parse_args()
+    
+    func_map = {
+        "all_leagueround": all_leagueround,
+        "cl_set": cl_set,
+        "cl_groupstage": cl_groupstage,
+        "cl_kostage": cl_kostage,
+        "my_leagueround": my_leagueround,
+        "el_group": el_group,
+        "initialize_league": initialize_league,
+        "sl_playoff": sl_playoff,
+        "el_playoff": el_playoff,
+        "el_kostage": el_kostage,
+        "cdrgames": cdrgames,
+    }
+    
+    func = func_map[args.function]
+    
+    if args.function == "my_leagueround":
+        # Requires a round number and lists of home/away scorers and assisters
+        if args.n is None:
+            print("Error: my_leagueround requires a round number (n).")
+            exit(1)
+        ga = [
+            args.home_goals,
+            args.home_assists,
+            args.away_goals,
+            args.away_assists
+        ]
+        func(args.n, ga)
+
+    elif args.function in ["cl_kostage", "cdrgames", "el_playoff", "el_kostage"]:
+        # Requires a round number and a list of team names via --args
+        if args.n is None or not args.args:
+            print(f"Error: {args.function} requires a round number (n) and --args team names.")
+            exit(1)
+        teams = [x for x in t_all if x.team in args.args]
+        func(args.n, teams)
+        
+    elif args.function in ["cl_groupstage", "el_group","all_leagueround"]:
+        # Functions requiring only a round number
+        if args.n is None:
+            print(f"Error: {args.function} requires a round number (n).")
+            exit(1)
+        func(args.n)
+
+    elif args.function == "sl_playoff":
+        # Requires a list of team names via --args
+        if not args.args:
+            print("Error: sl_playoff requires --args team names.")
+            exit(1)
+        func(args.args)
+
+    else:
+        # Functions without any arguments
+        func()
